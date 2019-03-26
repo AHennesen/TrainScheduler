@@ -23,6 +23,22 @@ function currentTime() {
     $("#currentTime").html(current);
     setTimeout(currentTime, 1000);
   };
+//  console log to check current time working
   console.log(currentTime);
+  
+//   checks for keypresses in the form-field class and then assigns the data to the right variables based on the ids.
+  $(".form-field").on("keyup", function() {
+    var traintemp = $("#train-name").val().trim();
+    var citytemp = $("#destination").val().trim();
+    var timetemp = $("#first-train").val().trim();
+    var freqtemp = $("#frequency").val().trim();
+    // stores the items entered into a local storage so that way they can be recalled later.
+    // Used sesions storage over localstorage because it is easier to check things when you can reset.
+  sessionStorage.setItem("train", traintemp);
+  sessionStorage.setItem("city", citytemp);
+  sessionStorage.setItem("time", timetemp);
+  sessionStorage.setItem("freq", freqtemp);
+});
 
+//   calling the current time function so that it runs
   currentTime();
