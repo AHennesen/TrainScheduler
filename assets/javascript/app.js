@@ -39,6 +39,27 @@ function currentTime() {
   sessionStorage.setItem("time", timetemp);
   sessionStorage.setItem("freq", freqtemp);
 });
+// pulls train name, destination, first and freq from the sessions storage
+$("#train-name").val(sessionStorage.getItem("train"));
+$("#destination").val(sessionStorage.getItem("city"));
+$("#first-train").val(sessionStorage.getItem("time"));
+$("#frequency").val(sessionStorage.getItem("freq"));
+// starts a fucntion when you click on the submit button and prevents the page from reloading
+$("#submit").on("click", function(event) {
+    event.preventDefault();
 
+// set up and if loop to make sure people fill in the necisarry information without leaving anything blank
+    if ($("#train-name").val().trim() === "" ||
+        $("#destination").val().trim() ==="" ||
+        $("#startTime").val().trim() == "" ||
+        $("#frequency").val().trim() ==="")
+    alert("Fill in the necisary information on the right");
+} else {
+    trainName = $("#train-name").val().trim();
+    destination = $("#destination").val().trim();
+    startTime = $("#first-train").val().trim();
+    frequency = $("#frequency").val().trim();
+}
+)
 //   calling the current time function so that it runs
   currentTime();
