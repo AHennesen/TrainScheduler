@@ -11,6 +11,9 @@ var config = {
 };
 firebase.initializeApp(config);
 
+var database = firebase.database();
+
+
 //   set up variables
 
 var trainName = "";
@@ -77,8 +80,20 @@ $("#submit").on("click", function (event) {
 database.ref().on("child_added", function(snapshot) {
     // storing snapshot.val() in a variable for convience
     var sv = snapshot.val();
-    
-});
+    // console log the snapshots to pull for html
+    console.log(sv.trainName);
+    console.log(sv.destination);
+    console.log(sv.startTime);
+    console.log(sv.frequency);
+    //pull the console logs so html refelcts, not sure how to make it reflect in a table
+    $("#train-table-rows").text(sv.trainName);
+    $("#train-table-rows").text(sv.destination);
+    $("#train-table-rows").text(sv.startTime);
+    $("#train-table-rows").text(sv.frequency);
+    // line of code for handling errors
+},function(errorObject) {
+    console.log("Errors handled: " + errorObject.code);
+  });
 
 //   calling the current time function so that it runs
 currentTime();
